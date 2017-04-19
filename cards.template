@@ -24,15 +24,26 @@
         <div class="clear"></div>
         {{end}}
         {{if .AreaImg}}
-        <img src="img/{{.AreaImg}}" class="area"/>
+        <img src="img/{{.AreaImg}}.png" class="area"/>
         {{end}}
     </div>
 
-    <h3 class="descriptor {{.Descriptor}}">
-        {{or .Effect .Descriptor "см. описание"}}
-    </h3>
-    <h3 class="casting-time">{{.CastTime}}</h3>
-    <h3 class="duration">{{.Duration}}</h3>
+    <div class="main-info">
+        {{range .Descriptors}}
+        <img src='img/{{.}}.svg'>
+        {{else}}
+        <img src='img/holosphere.svg'>
+        {{end}}
+        <span>{{.Effect}}</span>
+    </div>
+    <div class="main-info">
+        <img src='img/stopwatch.svg'>
+        <span>{{.CastTime}}</span>
+    </div>
+    <div class="main-info">
+        <img src='img/sands-of-time.svg'>
+        <span>{{.Duration}}</span>
+    </div>
 
     <h2>Дистанция</h2>
     <p class="range">{{.Range}}</p>

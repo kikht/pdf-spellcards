@@ -42,33 +42,28 @@
     overflow: hidden;
 }
 
-.card h3 {
-    margin: 1.5mm 18mm 0 7mm;
-    height: 3.8mm;
-    padding: 1.2mm 0.8mm 0mm 0.8mm;
-    font-weight: normal;
-    font-size: 3mm;
+.card .main-info {
+    margin: 1.5mm 18mm 0 2mm;
+    padding-top: 1mm;
+    height: 4mm;
     background: hsl(0, 0%, 60%);
-    color: white;
-    position: relative;
+    white-space: nowrap;
 }
 
-.card h3:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0mm;
-    left: -5mm;
+.card .main-info img {
     height: 5mm;
     width: 5mm;
-    background-repeat: no-repeat;
-    background-size: 5mm 5mm;
+    float: left;
+    background-color: white;
+    margin-top: -1mm;
+    padding-right: 0.2mm;
 }
 
-
-.card h3.casting-time:before { background-image: url('img/stopwatch.svg'); }
-.card h3.duration:before     { background-image: url('img/sands-of-time.svg'); }
-.card h3.light:before        { background-image: url('img/sunbeams.svg'); }
+.card .main-info span {
+    font-size: 3mm;
+    color: white;
+    padding-left: 0.5mm;
+}
 
 .card img.header-icon {
     height: 5mm;
@@ -90,11 +85,13 @@
     position: absolute;
     top: 0;
     left: 47mm;
+    width: 13mm;
     padding: 2mm 1mm 0 1mm;
     color: white;
     background: hsl(0, 0%, 10%);
     text-align: center;
     z-index: 1000;
+    box-shadow: 0.5mm 0.5mm 2mm 0 rgba(0,0,0,0.7);
 }
 
 .card .level .class {}
@@ -119,6 +116,7 @@
     width: 8mm;
     height: 8mm;
     vertical-align: top;
+    float: right;
 }
 
 .card .right-column .component figcaption {
@@ -126,6 +124,33 @@
 }
 
 
-.evocation h1     { background-color: hsl(0, 100%, 30%); }
+.abjuration h1     { background-color: hsl(240, 100%, 40%); }
+.abjuration h3     { background-color: hsl(240,  10%, 60%); }
+.abjuration .level { background-color: hsl(240, 100%, 20%); }
+
+.illusion h1     { background-color: hsl(300, 100%, 30%); }
+.illusion h3     { background-color: hsl(300,  10%, 60%); }
+.illusion .level { background-color: hsl(300, 100%, 20%); }
+
+.conjuration h1     { background-color: hsl(36, 100%, 50%); }
+.conjuration h3     { background-color: hsl(36,  10%, 60%); }
+.conjuration .level { background-color: hsl(36, 100%, 20%); }
+
+.enchantment h1     { background-color: hsl(60, 100%, 40%); }
+.enchantment h3     { background-color: hsl(60,  10%, 60%); }
+.enchantment .level { background-color: hsl(60, 100%, 20%); }
+
+.evocation h1     { background-color: hsl(0, 100%, 40%); }
 .evocation h3     { background-color: hsl(0,  10%, 60%); }
-.evocation .level { background-color: hsl(0, 100%, 10%); }
+.evocation .level { background-color: hsl(0, 100%, 20%); }
+
+.divination h1     { background-color: #ddd; color: black; }
+.divination .level { background-color: #bbb; color: black; }
+
+.necromancy h1     { background-color: #222; }
+.necromancy h3     { background-color: #888; }
+.necromancy .level { background-color: #000; }
+
+.transmutation h1     { background-color: hsl(120, 100%, 40%); }
+.transmutation h3     { background-color: hsl(120,  10%, 60%); }
+.transmutation .level { background-color: hsl(120, 100%, 20%); }
