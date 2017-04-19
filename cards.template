@@ -9,12 +9,11 @@
 {{$class := .Class}}
 {{range .Spells}}
 <div class="card {{.School}}">
-    <h1>{{.Name}}</h1>
-
     <div class="level">
         <div class="class">{{$class}}</div>
         <div class="number">{{.Level}}</div>
     </div>
+
     <div class="right-column">
         {{range .Components}} 
         <div class="component">
@@ -23,11 +22,10 @@
         </div>
         <div class="clear"></div>
         {{end}}
-        {{if .AreaImg}}
-        <img src="img/{{.AreaImg}}.png" class="area"/>
-        {{end}}
     </div>
-
+    
+    <h1>{{.Name}}</h1>
+    <div class="main-info-block">
     <div class="main-info">
         {{range .Descriptors}}
         <img src='img/{{.}}.svg'>
@@ -44,6 +42,11 @@
         <img src='img/sands-of-time.svg'>
         <span>{{.Duration}}</span>
     </div>
+    </div>
+    
+    {{if .AreaImg}}
+    <img src="img/{{.AreaImg}}.png" class="area"/>
+    {{end}}
 
     <h2>Дистанция</h2>
     <p class="range">{{.Range}}</p>

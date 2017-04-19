@@ -103,7 +103,7 @@
 
 .card .right-column {
     float: right;
-    padding: 5mm 0 1mm 0;
+    padding: 17mm 0 1mm 0;
 }
 
 .card .right-column .component {
@@ -121,6 +121,10 @@
 
 .card .right-column .component figcaption {
     text-align: center;
+}
+
+.card img.area {
+    clear: right;
 }
 
 
