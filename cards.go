@@ -273,7 +273,7 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 	value := func(keys ...string) string {
 		for _, key := range keys {
 			for i, col := range header {
-				if key == col {
+				if key == col && line[i] != "" {
 					return line[i]
 				}
 			}
