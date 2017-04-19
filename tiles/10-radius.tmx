@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="6" height="6" tilewidth="32" tileheight="32" nextobjectid="4">
+ <layer name="Tile Layer 1" width="6" height="6">
+  <data encoding="csv">
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" x="64" y="32">
+   <polygon points="0,32 0,0 64,0 64,32 96,32 96,64 96,96 64,96 64,128 0,128 0,96 -32,96 -32,32"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="Object Layer 2">
+  <object id="3" x="96" y="96">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
