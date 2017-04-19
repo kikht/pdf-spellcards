@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Myriad Pro', sans-serif;
+    font-size: 2.5mm;
+}
+
+.clear {
+    clear: both;
+}
+
+.card {
+    width: 63mm;
+    height: 89mm;
+    border: 1px solid black;
+    display: block;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+
+@media print
+{
+    .card {
+        page-break-inside: avoid;
+    }
+}
+
+.card h1 {
+    margin: 2mm 0 2mm 0;
+    padding: 1mm 15mm 0 3mm;
+    font-stretch: semi-condensed;
+    font-size: 5mm;
+    color: white;
+    background: hsl(0, 0%, 30%);
+}
+
+.card h2 {
+    margin: 1mm 2mm 0 2mm;
+    border-bottom: 1px solid;
+    font-size: 3mm;
+    overflow: hidden;
+}
+
+.card h3 {
+    margin: 1.5mm 18mm 0 7mm;
+    height: 3.8mm;
+    padding: 1.2mm 0.8mm 0mm 0.8mm;
+    font-weight: normal;
+    font-size: 3mm;
+    background: hsl(0, 0%, 60%);
+    color: white;
+    position: relative;
+}
+
+.card h3:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0mm;
+    left: -5mm;
+    height: 5mm;
+    width: 5mm;
+    background-repeat: no-repeat;
+    background-size: 5mm 5mm;
+}
+
+
+.card h3.casting-time:before { background-image: url('img/stopwatch.svg'); }
+.card h3.duration:before     { background-image: url('img/sands-of-time.svg'); }
+.card h3.light:before        { background-image: url('img/sunbeams.svg'); }
+
+.card img.header-icon {
+    height: 5mm;
+    float: left;
+    margin: 1.5mm 0 0 2mm;
+}
+
+.card p {
+    margin: 0.5mm 2mm 0 2mm;
+}
+
+.card img.area {
+    height: 18mm;
+    float: right;
+    margin: 0 2mm 1mm 1mm;
+}
+
+.card .level {
+    position: absolute;
+    top: 0;
+    left: 47mm;
+    padding: 2mm 1mm 0 1mm;
+    color: white;
+    background: hsl(0, 0%, 10%);
+    text-align: center;
+    z-index: 1000;
+}
+
+.card .level .class {}
+
+.card .level .number {
+    font-size: 9mm;
+    font-weight: bold;
+}
+
+.card .right-column {
+    float: right;
+    padding: 5mm 0 1mm 0;
+}
+
+.card .right-column .component {
+    display: inline-block;
+    float: right;
+    margin: 0 5mm 0 0;
+}
+
+.card .right-column .component img {
+    width: 8mm;
+    height: 8mm;
+    vertical-align: top;
+}
+
+.card .right-column .component figcaption {
+    text-align: center;
+}
+
+
+.evocation h1     { background-color: hsl(0, 100%, 30%); }
+.evocation h3     { background-color: hsl(0,  10%, 60%); }
+.evocation .level { background-color: hsl(0, 100%, 10%); }
