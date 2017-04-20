@@ -298,6 +298,12 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 			continue
 		}
 
+		shortDescr := value("short_description_ru", "short_description")
+		shortDescr = strings.TrimSpace(shortDescr)
+		descr := value("description_formated_ru", "description_formated")
+		if shortDescr != "" {
+			descr = "<p class=\"short-descr\">" + shortDescr + "</p>" + descr
+		}
 		spell := Spell{
 			Name:        value("name_ru", "name"),
 			School:      value("school"),
@@ -307,7 +313,7 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 			Range:       T(value("range")),
 			Area:        T(value("area")),
 			AreaImg:     GetAreaImg(value("range"), value("area")),
-			Description: template.HTML(value("description_formated_ru", "description_formated")),
+			Description: template.HTML(descr),
 			Level:       level,
 			Components:  GetComponents(value("components")),
 		}

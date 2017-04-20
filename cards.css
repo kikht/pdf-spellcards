@@ -73,6 +73,11 @@
 
 .card p {
     margin: 0.5mm 2mm 0 2mm;
+    color: #444;
+}
+
+.card p.short-descr {
+    color: black;
 }
 
 .card img.area {
