@@ -26,22 +26,22 @@
     
     <h1>{{.Name}}</h1>
     <div class="main-info-block">
-    <div class="main-info">
-        {{range .Descriptors}}
-        <img src='img/{{.}}.svg'>
-        {{else}}
-        <img src='img/holosphere.svg'>
-        {{end}}
-        <span>{{.Effect}}</span>
-    </div>
-    <div class="main-info">
-        <img src='img/stopwatch.svg'>
-        <span>{{.CastTime}}</span>
-    </div>
-    <div class="main-info">
-        <img src='img/sands-of-time.svg'>
-        <span>{{.Duration}}</span>
-    </div>
+        <div class="main-info effect">
+            {{range .Descriptors}}
+            <img src='img/{{.}}.svg'>
+            {{else}}
+            <img src='img/holosphere.svg'>
+            {{end}}
+            <div>{{.Effect}}</div>
+        </div>
+        <div class="main-info cast-time">
+            <img src='img/stopwatch.svg'>
+            <div>{{.CastTime}}</div>
+        </div>
+        <div class="main-info duration">
+            <img src='img/sands-of-time.svg'>
+            <div>{{.Duration}}</div>
+        </div>
     </div>
     
     {{if .AreaImg}}

@@ -298,16 +298,20 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 			continue
 		}
 
+		effect := value("effect_ru", "effect")
 		shortDescr := value("short_description_ru", "short_description")
 		shortDescr = strings.TrimSpace(shortDescr)
 		descr := value("description_formated_ru", "description_formated")
-		if shortDescr != "" {
+		if effect == "" {
+			effect = shortDescr
+		} else if shortDescr != "" {
 			descr = "<p class=\"short-descr\">" + shortDescr + "</p>" + descr
 		}
+
 		spell := Spell{
 			Name:        value("name_ru", "name"),
 			School:      value("school"),
-			Effect:      value("effect_ru", "effect"),
+			Effect:      effect,
 			CastTime:    T(value("casting_time")),
 			Duration:    T(value("duration")),
 			Range:       T(value("range")),
