@@ -27,22 +27,30 @@
     
     <h1>{{.Name}}</h1>
     <div class="main-info-block">
-        <div class="main-info effect">
+        <div class="main-info short-descr">
             {{range .Descriptors}}
             <img src='img/{{.}}.svg'>
             {{else}}
             <img src='img/holosphere.svg'>
             {{end}}
-            <div>{{.Effect}}</div>
+            <div>{{.ShortDescr}}</div>
         </div>
+        {{if .CastTime}}
         <div class="main-info cast-time">
             <img src='img/stopwatch.svg'>
             <div>{{.CastTime}}</div>
         </div>
+        {{end}}
         <div class="main-info duration">
             <img src='img/sands-of-time.svg'>
             <div>{{.Duration}}</div>
         </div>
+        {{if .Save}}
+        <div class="main-info saving-throw">
+            <img src='img/saving-throw.svg'>
+            <div>{{.Save}}</div>
+        </div>
+        {{end}}
     </div>
     
     {{if .AreaImg}}

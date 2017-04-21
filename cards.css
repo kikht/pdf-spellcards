@@ -50,13 +50,8 @@
 }
 
 .card .main-info {
-    margin: 1.5mm 18mm 0 2mm;
-    white-space: nowrap;
+    margin: 0.8mm 18mm 0 2mm;
     overflow: hidden;
-}
-
-.card .effect {
-    white-space: normal;
 }
 
 .card .main-info img {

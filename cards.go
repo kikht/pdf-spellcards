@@ -157,13 +157,13 @@ var (
 )
 
 type Spell struct {
-	Name, School, Effect      string
-	CastTime, Duration, Range string
-	Area, AreaImg             string
-	Descriptors               []string
-	Description               template.HTML
-	Level                     int
-	Components                []Component
+	Name, School, ShortDescr string
+	CastTime, Duration, Save string
+	Range, Area, AreaImg     string
+	Descriptors              []string
+	Description              template.HTML
+	Level                    int
+	Components               []Component
 }
 
 type TemplateData struct {
@@ -247,6 +247,32 @@ func GetComponents(str string) []Component {
 		}
 	}
 	return comp
+}
+
+func GetSavingThrow(str string) string {
+	str = strings.Replace(str, "Fortitude", "Стойкость", -1)
+	str = strings.Replace(str, "Fort.", "Стойкость", -1)
+	str = strings.Replace(str, "Fort", "Стойкость", -1)
+	str = strings.Replace(str, "Will", "Воля", -1)
+	str = strings.Replace(str, "Reflex", "Рефлекс", -1)
+	str = strings.Replace(str, "none", "нет", -1)
+	str = strings.Replace(str, "negates", "отменяет", -1)
+	str = strings.Replace(str, "partial", "частично", -1)
+	str = strings.Replace(str, "half", "наполовину", -1)
+	str = strings.Replace(str, "disbelief", "недоверие", -1)
+	str = strings.Replace(str, "harmless", "безвредно", -1)
+	str = strings.Replace(str, "object", "объект", -1)
+
+	str = strings.Replace(str, "blinding only", "только ослепление", -1)
+	str = strings.Replace(str, "if interacted with", "при взаимодействии", -1)
+
+	str = strings.Replace(str, "; see text", "", -1)
+	str = strings.Replace(str, "see text", "см. текст", -1)
+	str = strings.Replace(str, "or", "или", -1)
+	if str == "нет" {
+		str = ""
+	}
+	return str
 }
 
 type IntSet map[int]struct{}
@@ -347,22 +373,21 @@ func GenerateCards(writer io.Writer, class string, level IntSet) error {
 			continue
 		}
 
-		effect := value("effect_ru", "effect")
 		shortDescr := value("short_description_ru", "short_description")
 		shortDescr = strings.TrimSpace(shortDescr)
 		descr := value("description_formated_ru", "description_formated")
-		if effect == "" {
-			effect = shortDescr
-		} else if shortDescr != "" {
-			descr = "<p class=\"short-descr\">" + shortDescr + "</p>" + descr
+		castTime := T(value("casting_time"))
+		if castTime == "основное действие" {
+			castTime = ""
 		}
 
 		spell := Spell{
 			Name:        value("name_ru", "name"),
 			School:      value("school"),
-			Effect:      effect,
-			CastTime:    T(value("casting_time")),
+			ShortDescr:  shortDescr,
+			CastTime:    castTime,
 			Duration:    T(value("duration")),
+			Save:        GetSavingThrow(value("saving_throw")),
 			Range:       T(value("range")),
 			Area:        T(value("area")),
 			AreaImg:     GetAreaImg(value("range"), value("area")),
