@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <link href="cards.css" rel="stylesheet"/>
+    <script src="cards.js"></script>
 </head>
 <body>
 
@@ -58,6 +59,7 @@
 
     <h2>Описание</h2>
     <div class="description">{{.Description}}</div>
+    <span class="end"></span>
 </div>
 {{end}}
 

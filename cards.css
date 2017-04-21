@@ -10,13 +10,19 @@
 }
 
 .card {
-    width: 63mm;
+    width: 252mm;
     height: 89mm;
     border: 1px solid black;
     display: block;
     float: left;
     overflow: hidden;
     position: relative;
+    column-count: auto;
+    column-width: 63mm;
+    column-gap: 0;
+    column-fill: auto;
+    column-rule: 1px solid #aaa;
+    padding-top: 2mm;
 }
 
 @media print
@@ -28,7 +34,7 @@
 }
 
 .card h1 {
-    margin: 2mm 0 1.5mm 0;
+    margin: 0 0 1.5mm 0;
     padding: 1mm 15mm 0 3mm;
     font-stretch: semi-condensed;
     font-size: 5mm;
