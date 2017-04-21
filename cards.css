@@ -23,6 +23,7 @@
 {
     .card {
         page-break-inside: avoid;
+        -webkit-print-color-adjust: exact;
     }
 }
 

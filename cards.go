@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -248,7 +249,55 @@ func GetComponents(str string) []Component {
 	return comp
 }
 
-func GenerateCards(writer io.Writer, class string, level int) error {
+type IntSet map[int]struct{}
+
+func (s *IntSet) Contains(i int) bool {
+	_, v := (*s)[i]
+	return v
+}
+
+func (s *IntSet) Add(i int) {
+	(*s)[i] = struct{}{}
+}
+
+func ParseIntSet(str string) (IntSet, error) {
+	res := make(IntSet)
+	for _, p := range strings.Split(str, ",") {
+		p = strings.TrimSpace(p)
+		if strings.Contains(p, "-") {
+			lim := strings.SplitN(p, "-", 2)
+			start, err := strconv.Atoi(strings.TrimSpace(lim[0]))
+			if err != nil {
+				return res, errors.New("Can't parse int set range start: " +
+					err.Error())
+			}
+			stop, err := strconv.Atoi(strings.TrimSpace(lim[1]))
+			if err != nil {
+				return res, errors.New("Can't parse int set range stop: " +
+					err.Error())
+			}
+			for i := start; i <= stop; i++ {
+				res.Add(i)
+			}
+		} else {
+			i, err := strconv.Atoi(p)
+			if err != nil {
+				return res, errors.New("Can't parse int set value: " +
+					err.Error())
+			}
+			res.Add(i)
+		}
+	}
+	return res, nil
+}
+
+type SpellSortLevel []Spell
+
+func (s SpellSortLevel) Len() int           { return len(s) }
+func (s SpellSortLevel) Less(i, j int) bool { return s[i].Level < s[j].Level }
+func (s SpellSortLevel) Swap(i, j int)      { tmp := s[i]; s[i] = s[j]; s[j] = tmp }
+
+func GenerateCards(writer io.Writer, class string, level IntSet) error {
 	var (
 		data TemplateData
 		ok   bool
@@ -294,7 +343,7 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 		if err != nil {
 			return errors.New("can't parse level value: " + err.Error())
 		}
-		if curLevel != level || value("source") != "PFRPG Core" {
+		if !level.Contains(curLevel) || value("source") != "PFRPG Core" {
 			continue
 		}
 
@@ -318,7 +367,7 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 			Area:        T(value("area")),
 			AreaImg:     GetAreaImg(value("range"), value("area")),
 			Description: template.HTML(descr),
-			Level:       level,
+			Level:       curLevel,
 			Components:  GetComponents(value("components")),
 		}
 		if descStr := value("descriptor"); descStr != "" {
@@ -326,7 +375,7 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 		}
 		data.Spells = append(data.Spells, spell)
 	}
-
+	sort.Stable(SpellSortLevel(data.Spells))
 	err = tmpl.Execute(writer, data)
 	return err
 }
@@ -334,10 +383,14 @@ func GenerateCards(writer io.Writer, class string, level int) error {
 func main() {
 	var (
 		class = flag.String("class", "wiz", "Character class")
-		level = flag.Int("level", 0, "Spell level")
+		level = flag.String("level", "0", "Spell level")
 	)
 	flag.Parse()
-	err := GenerateCards(os.Stdout, *class, *level)
+	levelSet, err := ParseIntSet(*level)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	err = GenerateCards(os.Stdout, *class, levelSet)
 	if err != nil {
 		log.Fatalln(err)
 	}
