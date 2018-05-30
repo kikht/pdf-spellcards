@@ -25,8 +25,6 @@ const (
 	description
 )
 
-const param_fmt = "<p><strong>%s: </strong>%s</p>\n"
-
 var (
 	param_name = []string{
 		"Школа", "Круг", "Время сотворения", "Компоненты",
@@ -37,10 +35,12 @@ var (
 		school, level, cast_time, component, distance, target, area, effect,
 		duration, save, resist,
 	}
+	param_suffix = []string{";", "", "", "", "", "", "", "", "", "", ""}
 )
 
 func main() {
 	reader := csv.NewReader(os.Stdin)
+	reader.Read()
 	for {
 		r, err := reader.Read()
 		if err == io.EOF {
@@ -57,9 +57,11 @@ func main() {
 
 		for i := range param_id {
 			if r[param_id[i]] != "" {
-				fmt.Printf(param_fmt, param_name[i], r[param_id[i]])
+				fmt.Printf("<p><strong>%s: </strong>%s%s</p>\n",
+					param_name[i], r[param_id[i]], param_suffix[i])
 			}
 		}
 		fmt.Println(r[description])
+		fmt.Println()
 	}
 }
