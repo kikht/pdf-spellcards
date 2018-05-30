@@ -78,39 +78,39 @@ var translation = map[string]string{
 	"concentration":              "концентрация",
 	"Concentration + 2 rounds":   "концентрация + 2 раунда",
 
-	"concentration, up to 1 minute/level":        "концентрация, 1 мин./ур.",
-	"concentration, up to 1 minute/ level":       "концентрация, 1 мин./ур.",
-	"concentration, up to 1 min./level":          "концентрация, 1 мин./ур.",
-	"concentration, up to 10 min./level":         "концентрация, 10 мин./ур.",
-	"concentration, up to 10 min./ level":        "концентрация, 10 мин./ур.",
-	"1 round/level":                              "1 раунд/уровень",
-	"1 round + 1 round per three levels":         "1 раунд + 1 раунд/3 ур.",
-	"3 rounds/level":                             "3 раунда/уровень",
+	"concentration, up to 1 minute/level":        "концентрация, 1 мин./УЗ",
+	"concentration, up to 1 minute/ level":       "концентрация, 1 мин./УЗ",
+	"concentration, up to 1 min./level":          "концентрация, 1 мин./УЗ",
+	"concentration, up to 10 min./level":         "концентрация, 10 мин./УЗ",
+	"concentration, up to 10 min./ level":        "концентрация, 10 мин./УЗ",
+	"1 round/level":                              "1 раунд/УЗ",
+	"1 round + 1 round per three levels":         "1 раунд + 1 раунд/3 УЗ",
+	"3 rounds/level":                             "3 раунда/УЗ",
 	"1 minute or until discharged":               "1 минута или до отмены",
-	"1 min./level":                               "1 минута/уровень",
-	"1 min./level (D)":                           "1 мин./ур. или до отмены",
-	"10 min./level":                              "10 минут/уровень",
+	"1 min./level":                               "1 минута/УЗ",
+	"1 min./level (D)":                           "1 мин./УЗ или до отмены",
+	"10 min./level":                              "10 минут/УЗ",
 	"30 minutes or until discharged":             "30 минут или до отмены",
 	"1d4 rounds or 1 round; see text":            "1d4 раунда или 1 раунд, см. текст",
 	"2d4 rounds":                                 "2d4 раунда",
 	"1d6+2 rounds":                               "1d6+2 раунда",
-	"1 hour/level":                               "1 час/уровень",
-	"1 hour/level (D)":                           "1 час/уровень или до отмены",
-	"1 hour/level or until discharged; see text": "1 час/уровень или до отмены; см. текст",
-	"2 hours/level":                              "2 часа/уровень",
-	"until landing or 1 round/level":             "до приземл. или 1 раунд/ур.",
-	"1 day/level":                                "1 день/уровень",
+	"1 hour/level":                               "1 час/УЗ",
+	"1 hour/level (D)":                           "1 час/УЗ или до отмены",
+	"1 hour/level or until discharged; see text": "1 час/УЗ или до отмены; см. текст",
+	"2 hours/level":                              "2 часа/УЗ",
+	"until landing or 1 round/level":             "до приземл. или 1 раунд/УЗ",
+	"1 day/level":                                "1 день/УЗ",
 
 	//Range
 	"personal":                                    "на себя",
 	"touch":                                       "касание",
 	"personal or touch":                           "на себя или касание",
-	"personal or close (25 ft. + 5 ft./2 levels)": "на себя или близкая (25 фт. + 5 фт./2 уровня)",
+	"personal or close (25 ft. + 5 ft./2 levels)": "на себя или близкая (25 фт. + 5 фт./2 УЗ)",
 
-	"close (25 ft. + 5 ft./2 levels)": "близкая (25 фт. + 5 фт./2 уровня)",
-	"medium (100 ft. + 10 ft./level)": "средняя (100 фт. + 10 фт./уровнень)",
-	"medium (100 ft. + 10 ft. level)": "средняя (100 фт. + 10 фт./уровнень)",
-	"long (400 ft. + 40 ft./level)":   "дальняя (400 фт. + 40 фт./уровень)",
+	"close (25 ft. + 5 ft./2 levels)": "близкая (25 фт. + 5 фт./2 УЗ)",
+	"medium (100 ft. + 10 ft./level)": "средняя (100 фт. + 10 фт./УЗ)",
+	"medium (100 ft. + 10 ft. level)": "средняя (100 фт. + 10 фт./УЗ)",
+	"long (400 ft. + 40 ft./level)":   "дальняя (400 фт. + 40 фт./УЗ)",
 
 	"10 ft.": "10 футов",
 	"15 ft.": "15 футов",
@@ -147,13 +147,14 @@ type Component struct {
 }
 
 var (
-	COMP_VERBAL       = Component{"верб.", "verbal"}
-	COMP_SOMATIC      = Component{"сомат.", "somatic"}
-	COMP_MATERIAL     = Component{"матер.", "material"}
-	COMP_FOCUS        = Component{"фокус", "focus"}
-	COMP_DIVINE_FOCUS = Component{"бож.", "divine_focus"}
-	COMP_F_DF         = Component{"фокус/бож.", "f_df"}
-	COMP_M_DF         = Component{"матер./бож.", "m_df"}
+	COMP_VERBAL       = Component{"слов.", "verbal"}
+	COMP_SOMATIC      = Component{"жест.", "somatic"}
+	COMP_MATERIAL     = Component{"реаг.", "material"}
+	COMP_FOCUS        = Component{"фок.п.", "focus"}
+	COMP_DIVINE_FOCUS = Component{"сакр.", "divine_focus"}
+	COMP_F_DF         = Component{"фок.п./сакр..", "f_df"}
+	COMP_M_DF         = Component{"реаг./сакр.", "m_df"}
+	COMP_COSTLY       = Component{"ценн.", "costly"}
 )
 
 type Spell struct {
