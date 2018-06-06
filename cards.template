@@ -65,6 +65,11 @@
     <p class="area">{{.Area}}</p>
     {{end}}
 
+    {{if .ComponentsText}}
+    <h2>Ценные компоненты</h2>
+    <p class="components">{{.ComponentsText}}</p>
+    {{end}}
+
     <h2>Описание</h2>
     <div class="description">{{.Description}}</div>
     <span class="end"></span>
