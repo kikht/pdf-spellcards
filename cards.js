@@ -21,7 +21,17 @@ window.onload = function() {
     }
     for (var i = 0; i < small3.length; i++) {
         document.body.appendChild(small3[i]);
-        document.body.appendChild(small1.shift());
+        var level3 = small3[i].getElementsByClassName("number")[0].innerHTML;
+        var j = 0;
+        for (; j < small1.length; j++) {
+            level1 = small1[j].getElementsByClassName("number")[0].innerHTML;
+            if (level1 == level3) {
+                break;
+            }
+        }
+        var item = (j == small1.length) ? small1.shift() : small1.splice(j, 1)[0];
+        document.body.appendChild(item);
+
     }
     for (var i = 0; i < small2.length; i++) {
         document.body.appendChild(small2[i]);
